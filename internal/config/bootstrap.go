@@ -4,7 +4,7 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-func ApplySettings(app core.App, read ReadSecret) error {	
+func ApplySettings(app core.App, read ReadSecret) error {
 	appURL, err := read("app_url")
 	if err != nil {
 		return err
@@ -41,8 +41,8 @@ func ApplyOAuthProviders(app core.App, read ReadSecret) error {
 
 	for i, p := range providers {
 		users.OAuth2.Providers[i] = core.OAuth2ProviderConfig{
-			Name: p.Name,
-			ClientId: p.ClientID,
+			Name:         p.Name,
+			ClientId:     p.ClientID,
 			ClientSecret: p.ClientSecret,
 		}
 	}

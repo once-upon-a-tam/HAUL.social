@@ -17,11 +17,11 @@ func migrateCreateLinksCollection(app core.App) error {
 	}
 
 	links := core.NewBaseCollection("links")
-	links.ListRule = types.Pointer("user = @request.auth.id")
-	links.ViewRule = types.Pointer("user = @request.auth.id")
-	links.CreateRule = types.Pointer("@request.auth.id != '' && @request.body.user = @request.auth.id")
-	links.UpdateRule = types.Pointer("user = @request.auth.id")
-	links.DeleteRule = types.Pointer("user = @request.auth.id")
+	links.ListRule = types.Pointer("user = @request.auth.id")                                           //nolint:modernize // not concerned by the 'new' comment
+	links.ViewRule = types.Pointer("user = @request.auth.id")                                           //nolint:modernize // not concerned by the 'new' comment
+	links.CreateRule = types.Pointer("@request.auth.id != '' && @request.body.user = @request.auth.id") //nolint:modernize // not concerned by the 'new' comment
+	links.UpdateRule = types.Pointer("user = @request.auth.id")                                         //nolint:modernize // not concerned by the 'new' comment
+	links.DeleteRule = types.Pointer("user = @request.auth.id")                                         //nolint:modernize // not concerned by the 'new' comment
 
 	links.Fields.Add(
 		&core.RelationField{

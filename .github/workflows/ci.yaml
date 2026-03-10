@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    name: Lint, test, build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      # Fails if go.mod / go.sum are not tidy.
+      - name: Check go mod tidy
+        run: |
+          go mod tidy
+          git diff --exit-code go.mod go.sum
+
+      # golangci-lint runs go vet internally alongside the configured linters.
+      # The official action handles caching the lint binary and results.
+      - name: Lint
+        uses: golangci/golangci-lint-action@v9
+        with:
+          version: v2.10
+
+      # Race detector adds overhead but catches data races early
+      # -count=1 disables test result caching, ensuring tests always run
+      - name: Test
+        run: go test -race -count=1 ./...

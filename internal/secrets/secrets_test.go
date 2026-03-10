@@ -117,8 +117,8 @@ func TestRead_NotFound(t *testing.T) {
 		checkFn func(t *testing.T, val string, err error)
 	}{
 		{
-			name: "returns non-nil error",
-			envKey: "MISSING_KEY_XYZ",
+			name:    "returns non-nil error",
+			envKey:  "MISSING_KEY_XYZ",
 			readKey: "missing_key_xyz",
 			checkFn: func(t *testing.T, _ string, err error) {
 				t.Helper()
@@ -128,8 +128,8 @@ func TestRead_NotFound(t *testing.T) {
 			},
 		},
 		{
-			name: "error message contains the key",
-			envKey: "MISSING_KEY_ABC",
+			name:    "error message contains the key",
+			envKey:  "MISSING_KEY_ABC",
 			readKey: "missing_key_abc",
 			checkFn: func(t *testing.T, _ string, err error) {
 				t.Helper()
@@ -143,8 +143,8 @@ func TestRead_NotFound(t *testing.T) {
 			},
 		},
 		{
-			name: "error message mentions both sources",
-			envKey: "MISSING_BOTH_42",
+			name:    "error message mentions both sources",
+			envKey:  "MISSING_BOTH_42",
 			readKey: "missing_both_42",
 			checkFn: func(t *testing.T, _ string, err error) {
 				t.Helper()
@@ -158,8 +158,8 @@ func TestRead_NotFound(t *testing.T) {
 			},
 		},
 		{
-			name: "returns empty string alongside error",
-			envKey: "EMPTY_RETURN_KEY",
+			name:    "returns empty string alongside error",
+			envKey:  "EMPTY_RETURN_KEY",
 			readKey: "empty_return_key",
 			checkFn: func(t *testing.T, result string, err error) {
 				t.Helper()
@@ -174,8 +174,8 @@ func TestRead_NotFound(t *testing.T) {
 		// os.GetEnv returns "" for unset variables. the read function treats that
 		// as an absent variable.
 		{
-			name: "empty-string env var falls through to error",
-			envKey: "EMPTY_VALUE_KEY",
+			name:    "empty-string env var falls through to error",
+			envKey:  "EMPTY_VALUE_KEY",
 			readKey: "empty_value_key",
 			checkFn: func(t *testing.T, _ string, err error) {
 				t.Helper()

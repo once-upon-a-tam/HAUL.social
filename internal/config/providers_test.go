@@ -116,7 +116,7 @@ func TestLoadProviders_Error(t *testing.T) {
 				return "", nil
 			},
 			expectedErrWrap: errStore,
-			expectedErrMsg: "failed reading the oauth_providers secret",
+			expectedErrMsg:  "failed reading the oauth_providers secret",
 		},
 		{
 			name: "empty oauth_providers secret",
@@ -144,7 +144,7 @@ func TestLoadProviders_Error(t *testing.T) {
 				return "", nil
 			},
 			expectedErrWrap: errStore,
-			expectedErrMsg: `provider "github"`,
+			expectedErrMsg:  `provider "github"`,
 		},
 		{
 			name: "read client_secret fails",
@@ -161,12 +161,12 @@ func TestLoadProviders_Error(t *testing.T) {
 				return "", nil
 			},
 			expectedErrWrap: errStore,
-			expectedErrMsg: `provider "github"`,
+			expectedErrMsg:  `provider "github"`,
 		},
 	}
 
 	for _, tc := range cases {
-		t.Run(tc.name, func (t *testing.T) {
+		t.Run(tc.name, func(t *testing.T) {
 			result, err := LoadProviders(tc.read)
 			if err == nil {
 				t.Fatalf("expected error, got providers: %v", result)
