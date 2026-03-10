@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version-file: go.mod
           cache: true
@@ -30,9 +30,9 @@ jobs:
       # golangci-lint runs go vet internally alongside the configured linters.
       # The official action handles caching the lint binary and results.
       - name: Lint
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v9
         with:
-          version: v1.64.8
+          version: v2.10
 
       # Race detector adds overhead but catches data races early
       # -count=1 disables test result caching, ensuring tests always run

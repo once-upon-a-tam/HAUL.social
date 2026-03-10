@@ -1,6 +1,6 @@
 module haul
 
-go 1.25.0
+go 1.26.0
 
 require github.com/pocketbase/pocketbase v0.36.6
 
