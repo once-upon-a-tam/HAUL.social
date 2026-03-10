@@ -14,7 +14,7 @@ func Read(key string) (string, error) {
 }
 
 func read(dir, key string) (string, error) {
-	if data, err := os.ReadFile(filepath.Join(dir, key)); err == nil {
+	if data, err := os.ReadFile(filepath.Join(dir, key)); err == nil { // #nosec G304
 		return strings.TrimSpace(string(data)), nil
 	}
 

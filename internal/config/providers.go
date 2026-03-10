@@ -1,6 +1,7 @@
 package config
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 )
@@ -20,7 +21,7 @@ func LoadProviders(read ReadSecret) ([]OAuthProvider, error) {
 	}
 
 	var providers []OAuthProvider
-	for _, name := range strings.Split(raw, ",") {
+	for name := range strings.SplitSeq(raw, ",") {
 		name = strings.TrimSpace(name)
 		if name == "" {
 			continue
@@ -44,7 +45,7 @@ func LoadProviders(read ReadSecret) ([]OAuthProvider, error) {
 	}
 
 	if len(providers) == 0 {
-		return nil, fmt.Errorf("oauth_providers secret contains no valid provider names")
+		return nil, errors.New("oauth_providers secret contains no valid provider names")
 	}
 
 	return providers, nil
