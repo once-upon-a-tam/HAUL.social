@@ -9,7 +9,7 @@ import (
 type OAuthProvider struct {
 	Name         string
 	ClientID     string
-	ClientSecret string
+	ClientSecret string // #nosec G117 // Will never get sent over API
 }
 
 type ReadSecret func(key string) (string, error)
